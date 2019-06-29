@@ -25,9 +25,10 @@ pipeline {
     }   
     stage('push image to ECR'){
       steps {
-	withDockerRegistry([credentialsId: 'docker-creds', url: "https://index.docker.io/v1/"]) {
-        sh '/usr/bin/docker push dvisanand/employee-service:latest'
+	      withDockerRegistry([credentialsId: 'docker-creds', url: "https://index.docker.io/v1/"]) {
+          sh '/usr/bin/docker push dvisanand/employee-service:latest'
       }
+	}
     }
     stage('deploy to EKS') {
       steps {
@@ -39,6 +40,4 @@ pipeline {
       }
     }
   }
-}
-}
 }
