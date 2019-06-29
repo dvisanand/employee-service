@@ -1,4 +1,4 @@
-apiVersion: extensions/v1beta1
+apiVersion: extensions/v1alpha1
 kind: Deployment
 metadata:
   name: employee-service
