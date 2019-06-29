@@ -33,11 +33,8 @@ pipeline {
     }
     stage('deploy to EKS') {
       steps {
-        node('eks-master-node'){
-          checkout scm
          sh '/home/ec2-user/bin/kubectl apply -f deployment.yaml' 
          sh '/home/ec2-user/bin/kubectl apply -f service.yaml' 
-        }
       }
     }
   }
