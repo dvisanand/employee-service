@@ -25,7 +25,7 @@ pipeline {
     }   
     stage('push image to ECR'){
       steps {
-	      withDockerRegistry([credentialsId: 'docker-creds', url: "https://index.docker.io/v1/"]) {
+	      withDockerRegistry([credentialsId: 'my-creds', url: "https://index.docker.io/v1/"]) {
           sh '/usr/bin/docker tag employee-service dvisanand/employee-service:latest'
           sh '/usr/bin/docker push dvisanand/employee-service:latest'
       }
