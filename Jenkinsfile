@@ -34,8 +34,8 @@ pipeline {
     }
     stage('deploy to EKS') {
       steps {
-         sh 'kubectl apply -f deployment.yaml' 
-         sh 'kubectl apply -f service.yaml' 
+         sh '/usr/local/bin/kubectl apply -f deployment.yaml' 
+         sh '/usr/local/bin/kubectl apply -f service.yaml' 
       }
     }
   }
