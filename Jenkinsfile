@@ -36,7 +36,7 @@ pipeline {
       steps {
 	 node('eks-master-node'){
 	     checkout scm
-	     aws eks --region us-east-1 update-kubeconfig --name prod
+	     sh 'aws eks --region us-east-1 update-kubeconfig --name prod'
              sh '/usr/local/bin/kubectl apply -f deployment.yaml' 
              sh '/usr/local/bin/kubectl apply -f service.yaml' 
 	 }
