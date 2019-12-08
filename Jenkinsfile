@@ -27,7 +27,7 @@ pipeline {
       steps {
 		withDockerRegistry(credentialsId: 'ecr:ap-south-1:aws-creds', url: 'http://118463809662.dkr.ecr.ap-south-1.amazonaws.com/employee-repo') 
 	       {
-		sh '$(aws ecr get-login --no-include-email --region ap-south-1)'
+		//sh '$(aws ecr get-login --no-include-email --region ap-south-1)'
           	sh 'docker tag employee-repo:latest 118463809662.dkr.ecr.us-east-1.amazonaws.com/employee-repo:latest'
           	sh 'docker push 118463809662.dkr.ecr.ap-south-1.amazonaws.com/employee-repo:latest'
       	       }
