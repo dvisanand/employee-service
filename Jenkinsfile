@@ -20,14 +20,15 @@ pipeline {
     }
     stage('Docker Build') {
       steps {
-        sh '/usr/bin/docker build -t employee-service .'
+        sh '/usr/bin/docker build -t employee-repo .'
       }
     }   
     stage('push image to ECR'){
       steps {
 		withDockerRegistry(credentialsId: 'ecr:ap-south-1:aws-creds', url: 'http://118463809662.dkr.ecr.ap-south-1.amazonaws.com/employee-repo') 
 	       {
-          	sh 'docker tag employee-service:latest 118463809662.dkr.ecr.us-east-1.amazonaws.com/employee-repo:latest'
+		sh '$(aws ecr get-login --no-include-email --region ap-south-1)'
+          	sh 'docker tag employee-repo:latest 118463809662.dkr.ecr.us-east-1.amazonaws.com/employee-repo:latest'
           	sh 'docker push 118463809662.dkr.ecr.ap-south-1.amazonaws.com/employee-repo:latest'
       	       }
       }
